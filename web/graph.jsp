@@ -6,9 +6,29 @@
 <% 
     int partyNumber = Integer.parseInt(request.getParameter("partyNumber"));
     int totalVotes = 0;
-    for(int i=0;i<partyNumber;i++){
+    boolean anyNull = false;
+    boolean emptyNumber = false;
+    try
+    {
+       for(int i=0;i<partyNumber;i++){
        totalVotes+=Integer.parseInt(request.getParameter("voteCount"+(i+1)));
-    }%>
+       String temp = request.getParameter("partyName"+(i+1));
+       System.out.println("test");
+       System.out.println(temp);
+       if(temp.isEmpty()){
+           anyNull=true;
+       }
+       System.out.println(anyNull);
+           
+    } 
+    }catch(Exception e){
+        emptyNumber = true;
+    }
+    
+    if(!anyNull && !emptyNumber)
+    {
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,9 +37,7 @@
         <title>Resultado Elecciones</title>
     </head>
 <body>
-    <h1><%=100*(Double.parseDouble(request.getParameter("voteCount1")))/totalVotes%></h1>
-    <h1><%=100*(Double.parseDouble(request.getParameter("voteCount2")))/totalVotes%></h1>
-    <h1><%=100*(Double.parseDouble(request.getParameter("voteCount3")))/totalVotes%></h1>
+    <h1>Resultado Elecciones</h1>
 <svg id = "lienzoSVG" width="260" height="250"></svg>
 
 <script type="text/javascript">
@@ -111,13 +129,32 @@
        af[i] = ((porcentaje*360)/100);
 
        if( i>0 ){
-          af[ i ] += af[ i-1 ]
+          af[ i ] += af[ i-1 ];
           ap[ i ] = af[ i-1 ];
         } else { ap[ i ] = 0; }
 
        nuevoGajo(ap[ i ],af[ i ],color,i);
        nuevaSombra(ap[ i ],af[ i ],color,i);
-    }
+    }   
 </script>
+    <% for(int i=1; i<=partyNumber; i++){ %>
+    <p><%=request.getParameter("partyName"+i)%></p>
+    <svg width="40" height="20">
+        <rect width="30" height="10" style="fill:<%=request.getParameter("color"+i)%>;stroke-width:1;stroke:rgb(0,0,0)"/>
+    </svg>
+    <% } %>
 </body>
 </html>
+<% 
+   }else{ 
+%>
+<html>
+    <head>
+        <title>Grafico Electoral</title>
+    </head>
+    <body>
+        <h1>Por favor, el nombre de partido y/o el numero de votos no puede estar en blanco!</h1>
+        <a href="inicio.html">Volver</a>
+    </body>
+</html>
+<% } %>

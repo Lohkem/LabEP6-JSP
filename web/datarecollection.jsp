@@ -19,7 +19,7 @@
         <title>Grafico Electoral</title>
     </head>
     <body>
-        <h1>Hello World! la cantidad de partidos es: <%= request.getParameter("partyNumber") %></h1><hr><br>
+        <h1>La cantidad de partidos es: <%= request.getParameter("partyNumber") %></h1><hr><br>
         <form name="graphForm" method="post" action="graph.jsp">
         <%for(int i=1; i<=partyNumber;i++){%>
         Nombre del partido politico: <input type="text" name="partyName<%=i%>"/><br><br>
@@ -29,6 +29,7 @@
         <input type="hidden" name="partyNumber" value="<%=partyNumber%>"/>
         <input type="submit" name="submit" value="Generar grafico"/>
         </form>
+        <a href="inicio.html">Volver</a>
     </body>
 </html>
 <%  }
@@ -41,5 +42,6 @@
             <h1>Por favor, elija un numero entre 3 y 5!</h1>
             <a href="inicio.html">Volver</a>
         </body>
+    </html>
     <%}%>
 
