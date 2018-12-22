@@ -13,12 +13,10 @@
        for(int i=0;i<partyNumber;i++){
        totalVotes+=Integer.parseInt(request.getParameter("voteCount"+(i+1)));
        String temp = request.getParameter("partyName"+(i+1));
-       System.out.println("test");
-       System.out.println(temp);
+
        if(temp.isEmpty()){
            anyNull=true;
        }
-       System.out.println(anyNull);
            
     } 
     }catch(Exception e){
@@ -36,7 +34,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <title>Resultado Elecciones</title>
     </head>
-<body>
+<body bgcolor="#ffd7a3">
     <h1>Resultado Elecciones</h1>
 <svg id = "lienzoSVG" width="260" height="250"></svg>
 
@@ -152,7 +150,7 @@
     <head>
         <title>Grafico Electoral</title>
     </head>
-    <body>
+    <body bgcolor="#ffd7a3">
         <h1>Por favor, el nombre de partido y/o el numero de votos no puede estar en blanco!</h1>
         <a href="inicio.html">Volver</a>
     </body>

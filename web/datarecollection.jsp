@@ -18,7 +18,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Grafico Electoral</title>
     </head>
-    <body>
+    <body bgcolor="#ffd7a3">
         <h1>La cantidad de partidos es: <%= request.getParameter("partyNumber") %></h1><hr><br>
         <form name="graphForm" method="post" action="graph.jsp">
         <%for(int i=1; i<=partyNumber;i++){%>
@@ -38,7 +38,7 @@
         <head>
             <title>Grafico Electoral</title>
         </head>
-        <body>
+        <body bgcolor="#ffd7a3">
             <h1>Por favor, elija un numero entre 3 y 5!</h1>
             <a href="inicio.html">Volver</a>
         </body>
